@@ -13,7 +13,8 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Tailwind CSS configuration for extending theme and adding custom colors/fonts
+        // Tailwind CSS configuration (dark mode classes are still present in HTML for potential future use,
+        // but JavaScript toggle is removed in main.js for this version)
         tailwind.config = {
             theme: {
                 extend: {
@@ -26,7 +27,7 @@
                     },
                 }
             },
-            darkMode: 'class',
+            darkMode: 'class', // Keep this for Tailwind, but JS won't toggle it
         }
     </script>
 
@@ -42,59 +43,68 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/my_website_final/static/css/style.css">
 </head>
-<body class="font-inter bg-white text-gray-900 transition-colors duration-300 ease-in-out dark:bg-gray-900 dark:text-gray-100">
+<body class="font-inter bg-white text-gray-900 transition-colors duration-300 ease-in-out">
+    <!-- Removed dark:bg-gray-900 dark:text-gray-100 from body for guaranteed light mode -->
 
     <!-- Custom Page Loader -->
     <div id="page-loader" class="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 transition-opacity duration-700 opacity-100">
-        <video id="loader-video" src="/my_website_final/static/videos/loader.mp4" preload="auto" muted playsinline loop></video>
-        <p class="mt-4 text-white text-lg">Loading amazing content...</p>
+        <!-- Removed video element to eliminate video autoplay issues -->
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-500"></div>
+        <p class="mt-4 text-white text-lg">Loading content...</p>
     </div>
 
     <!-- Responsive Navigation Bar -->
-    <nav class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
+    <nav class="bg-white shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <!-- Removed dark:bg-gray-800 from nav -->
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo/Brand Name -->
-            <a href="#home" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">YourBrand</a>
+            <a href="#home" class="text-2xl font-bold text-indigo-600">YourBrand</a>
+            <!-- Removed dark:text-indigo-400 from logo -->
 
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Home</a>
-                <a href="#services" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Services</a>
-                <a href="#portfolio" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Portfolio</a>
-                <a href="#stats" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Statistics</a>
-                <a href="#object" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Highlight</a>
-                <a href="#testimonials" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Testimonials</a>
-                <a href="#graph" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Graph</a>
-                <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">Contact</a>
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Home</a>
+                <a href="#services" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Services</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Portfolio</a>
+                <a href="#stats" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Statistics</a>
+                <a href="#object" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Highlight</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Testimonials</a>
+                <a href="#graph" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Graph</a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition-colors duration-200">Contact</a>
+                <!-- Removed dark:text-gray-200 dark:hover:text-indigo-400 from links -->
             </div>
 
-            <!-- Light/Dark Mode Toggle & Hamburger Menu -->
+            <!-- Light/Dark Mode Toggle (Button for this is still present, but JS will ignore it) & Hamburger Menu -->
             <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="text-gray-700 dark:text-gray-200 text-xl focus:outline-none p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200" aria-label="Toggle dark mode">
-                    <!-- Icon will be set by JavaScript based on current theme -->
-                    <i class="fas fa-moon"></i>
+                <!-- Theme toggle button - JS functionality removed for submission -->
+                <button id="theme-toggle" class="text-gray-700 text-xl focus:outline-none p-2 rounded-full hover:bg-gray-100 transition-colors duration-200" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i> <!-- Always show moon icon -->
                 </button>
-                <button id="hamburger-menu" class="md:hidden text-gray-700 dark:text-gray-200 text-2xl focus:outline-none" aria-label="Open mobile menu">
+                <button id="hamburger-menu" class="md:hidden text-gray-700 text-2xl focus:outline-none" aria-label="Open mobile menu">
                     <i class="fas fa-bars"></i>
                 </button>
+                <!-- Removed dark:text-gray-200 dark:hover:bg-gray-700 from buttons -->
             </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 py-2 shadow-inner">
-            <a href="#home" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Home</a>
-            <a href="#services" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Services</a>
-            <a href="#portfolio" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Portfolio</a>
-            <a href="#stats" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Statistics</a>
-            <a href="#object" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Highlight</a>
-            <a href="#testimonials" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Testimonials</a>
-            <a href="#graph" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Graph</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">Contact</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2 shadow-inner">
+            <!-- Removed dark:bg-gray-800 from mobile menu -->
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Home</a>
+            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Services</a>
+            <a href="#portfolio" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Portfolio</a>
+            <a href="#stats" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Statistics</a>
+            <a href="#object" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Highlight</a>
+            <a href="#testimonials" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Testimonials</a>
+            <a href="#graph" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Graph</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200">Contact</a>
+            <!-- Removed dark:text-gray-200 dark:hover:bg-gray-700 from mobile links -->
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-parallax relative h-screen bg-cover bg-center text-white flex items-center" style="background-image: url('/my_website_final/static/images/hero-bg.jpg');">
+    <section id="home" class="relative h-screen bg-indigo-700 text-white flex items-center">
+        <!-- Removed background-image URL and parallax classes -->
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="container mx-auto px-4 z-10 text-center animate-on-scroll fade-in">
             <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 drop-shadow-lg">Build Your Sustainable Future</h1>
@@ -108,77 +118,102 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+    <section id="services" class="py-16 bg-gray-100 transition-colors duration-300">
+        <!-- Removed dark:bg-gray-800 -->
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Our Services</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Our Services</h2>
+            <!-- Removed dark:text-gray-100 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Service Card 1: Sustainable Design -->
-                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-left ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl mb-6">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-left ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-700 -->
+                    <div class="text-indigo-600 text-5xl mb-6">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Sustainable Design</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <!-- Removed dark:text-indigo-400 -->
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Sustainable Design</h3>
+                    <!-- Removed dark:text-gray-100 -->
+                    <p class="text-gray-600">
                         Crafting eco-friendly architectural solutions that harmonize with nature and minimize environmental impact.
                     </p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
                 <!-- Service Card 2: Energy Efficiency -->
-                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-up delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl mb-6">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-up delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-700 -->
+                    <div class="text-indigo-600 text-5xl mb-6">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Energy Efficiency</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <!-- Removed dark:text-indigo-400 -->
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Energy Efficiency</h3>
+                    <!-- Removed dark:text-gray-100 -->
+                    <p class="text-gray-600">
                         Implementing innovative strategies to reduce energy consumption and operational costs for buildings.
                     </p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
                 <!-- Service Card 3: Green Building Certifications -->
-                <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-right delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl mb-6">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center animate-on-scroll fade-in-right delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-700 -->
+                    <div class="text-indigo-600 text-5xl mb-6">
                         <i class="fas fa-certificate"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Green Certifications</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <!-- Removed dark:text-indigo-400 -->
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Green Certifications</h3>
+                    <!-- Removed dark:text-gray-100 -->
+                    <p class="text-gray-600">
                         Guiding clients through LEED, BREEAM, and other green building certification processes.
                     </p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="portfolio" class="py-16 bg-white transition-colors duration-300">
+        <!-- Removed dark:bg-gray-900 -->
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Our Portfolio</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Our Portfolio</h2>
+            <!-- Removed dark:text-gray-100 -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1 -->
-                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-left transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                <div class="bg-gray-100 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-left transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                    <!-- Removed dark:bg-gray-800 -->
                     <img src="/my_website_final/static/images/project1.jpg" alt="Eco-Resort Design" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Eco-Resort Design</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Eco-Resort Design</h3>
+                        <!-- Removed dark:text-gray-100 -->
+                        <p class="text-gray-600">
                             A stunning resort integrated seamlessly with its natural surroundings, emphasizing local materials.
                         </p>
+                        <!-- Removed dark:text-gray-300 -->
                     </div>
                 </div>
                 <!-- Project Card 2 -->
-                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-up delay-200 transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                <div class="bg-gray-100 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-up delay-200 transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                    <!-- Removed dark:bg-gray-800 -->
                     <img src="/my_website_final/static/images/project2.jpg" alt="Urban Vertical Farm" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Urban Vertical Farm</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Urban Vertical Farm</h3>
+                        <!-- Removed dark:text-gray-100 -->
+                        <p class="text-gray-600">
                             Innovative vertical farming solution for sustainable food production in urban areas.
                         </p>
+                        <!-- Removed dark:text-gray-300 -->
                     </div>
                 </div>
                 <!-- Project Card 3 -->
-                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-right delay-400 transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                <div class="bg-gray-100 rounded-lg shadow-xl overflow-hidden animate-on-scroll fade-in-right delay-400 transform hover:scale-105 transition-transform duration-300 ripple-effect">
+                    <!-- Removed dark:bg-gray-800 -->
                     <img src="/my_website_final/static/images/project3.jpg" alt="Net-Zero Home" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100">Net-Zero Home</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Net-Zero Home</h3>
+                        <!-- Removed dark:text-gray-100 -->
+                        <p class="text-gray-600">
                             A residential project designed to produce as much energy as it consumes annually.
                         </p>
+                        <!-- Removed dark:text-gray-300 -->
                     </div>
                 </div>
             </div>
@@ -186,95 +221,127 @@
     </section>
 
     <!-- Statistics Section -->
-    <section id="stats" class="py-16 bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
+    <section id="stats" class="py-16 bg-gray-200 transition-colors duration-300">
+        <!-- Removed dark:bg-gray-700 -->
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Our Achievements</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Our Achievements</h2>
+            <!-- Removed dark:text-gray-100 -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl font-bold mb-2">150+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-lg">Projects Completed</p>
+                <div class="bg-white p-6 rounded-lg shadow-xl animate-on-scroll zoom-in ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-800 -->
+                    <div class="text-indigo-600 text-5xl font-bold mb-2">150+</div>
+                    <!-- Removed dark:text-indigo-400 -->
+                    <p class="text-gray-600 text-lg">Projects Completed</p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl font-bold mb-2">95%</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-lg">Client Satisfaction</p>
+                <div class="bg-white p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-800 -->
+                    <div class="text-indigo-600 text-5xl font-bold mb-2">95%</div>
+                    <!-- Removed dark:text-indigo-400 -->
+                    <p class="text-gray-600 text-lg">Client Satisfaction</p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl font-bold mb-2">12+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-lg">Years Experience</p>
+                <div class="bg-white p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-800 -->
+                    <div class="text-indigo-600 text-5xl font-bold mb-2">12+</div>
+                    <!-- Removed dark:text-indigo-400 -->
+                    <p class="text-gray-600 text-lg">Years Experience</p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-600 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                    <div class="text-indigo-600 dark:text-indigo-400 text-5xl font-bold mb-2">50+</div>
-                    <p class="text-gray-600 dark:text-gray-300 text-lg">Awards Won</p>
+                <div class="bg-white p-6 rounded-lg shadow-xl animate-on-scroll zoom-in delay-600 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                    <!-- Removed dark:bg-gray-800 -->
+                    <div class="text-indigo-600 text-5xl font-bold mb-2">50+</div>
+                    <!-- Removed dark:text-indigo-400 -->
+                    <p class="text-gray-600 text-lg">Awards Won</p>
+                    <!-- Removed dark:text-gray-300 -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Highlighted Striking Single Object (Three.js 3D Cube) -->
-    <section id="object" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="object" class="py-16 bg-white transition-colors duration-300">
+        <!-- Removed dark:bg-gray-900 -->
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Innovative Concept</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-on-scroll fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Innovative Concept</h2>
+            <!-- Removed dark:text-gray-100 -->
+            <p class="text-lg text-gray-600 mb-8 max-w-3xl mx-auto animate-on-scroll fade-in">
                 Explore a dynamically rotating 3D representation of our commitment to modern, sustainable design principles.
                 Interact with the object by dragging your mouse or finger on it.
             </p>
-            <div id="threejs-object-container" class="w-full max-w-xl mx-auto h-96 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl mx-auto overflow-hidden animate-on-scroll zoom-in">
+            <!-- Removed dark:text-gray-300 -->
+            <div id="threejs-object-container" class="w-full max-w-xl mx-auto h-96 bg-gray-100 rounded-lg shadow-xl mx-auto overflow-hidden animate-on-scroll zoom-in">
+                <!-- Removed dark:bg-gray-800 -->
                 <!-- Three.js canvas will be injected here by main.js -->
             </div>
         </div>
     </section>
 
     <!-- Testimonials Carousel Section -->
-    <section id="testimonials" class="py-16 bg-gray-100 dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
+    <section id="testimonials" class="py-16 bg-gray-100 transition-colors duration-300 overflow-hidden">
+        <!-- Removed dark:bg-gray-800 -->
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">What Our Clients Say</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">What Our Clients Say</h2>
+            <!-- Removed dark:text-gray-100 -->
             <div class="relative w-full max-w-4xl mx-auto">
                 <div class="testimonials-carousel-inner flex space-x-8 overflow-hidden snap-x snap-mandatory scroll-smooth p-4 -mx-4">
                     <!-- Testimonial 1 -->
                     <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
-                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-left ripple-effect transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
+                        <div class="bg-white rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-left ripple-effect transform hover:scale-105 transition-transform duration-300">
+                            <!-- Removed dark:bg-gray-700 -->
+                            <p class="text-gray-600 mb-6 flex-grow">
                                 "The team delivered an outstanding sustainable design. Their expertise in eco-friendly architecture is unmatched!"
                             </p>
+                            <!-- Removed dark:text-gray-300 -->
                             <div>
-                                <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">- Jane Doe</h4>
-                                <p class="text-gray-500 dark:text-gray-400">CEO, GreenCorp</p>
+                                <h4 class="text-xl font-semibold text-indigo-600">- Jane Doe</h4>
+                                <!-- Removed dark:text-indigo-400 -->
+                                <p class="text-gray-500">CEO, GreenCorp</p>
+                                <!-- Removed dark:text-gray-400 -->
                             </div>
                         </div>
                     </div>
                     <!-- Testimonial 2 -->
                     <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
-                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-up delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
+                        <div class="bg-white rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-up delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                            <!-- Removed dark:bg-gray-700 -->
+                            <p class="text-gray-600 mb-6 flex-grow">
                                 "Our new office building is not only beautiful but also incredibly energy-efficient, thanks to their innovative solutions."
                             </p>
+                            <!-- Removed dark:text-gray-300 -->
                             <div>
-                                <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">- John Smith</h4>
-                                <p class="text-gray-500 dark:text-gray-400">Director, EnerTech</p>
+                                <h4 class="text-xl font-semibold text-indigo-600">- John Smith</h4>
+                                <!-- Removed dark:text-indigo-400 -->
+                                <p class="text-gray-500">Director, EnerTech</p>
+                                <!-- Removed dark:text-gray-400 -->
                             </div>
                         </div>
                     </div>
                     <!-- Testimonial 3 -->
                     <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
-                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-right delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
-                            <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
+                        <div class="bg-white rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-right delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
+                            <!-- Removed dark:bg-gray-700 -->
+                            <p class="text-gray-600 mb-6 flex-grow">
                                 "They made the LEED certification process seamless and understandable. Highly recommend their professional services!"
                             </p>
+                            <!-- Removed dark:text-gray-300 -->
                             <div>
-                                <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">- Emily White</h4>
-                                <p class="text-gray-500 dark:text-gray-400">Project Manager, EcoBuild</p>
+                                <h4 class="text-xl font-semibold text-indigo-600">- Emily White</h4>
+                                <!-- Removed dark:text-indigo-400 -->
+                                <p class="text-gray-500">Project Manager, EcoBuild</p>
+                                <!-- Removed dark:text-gray-400 -->
                             </div>
                         </div>
                     </div>
                     <!-- Testimonial 4 -->
                     <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
-                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between">
-                            <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
+                        <div class="bg-white rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between">
+                            <p class="text-gray-600 mb-6 flex-grow">
                                 "Their innovative approach to urban green spaces is truly inspiring. A pleasure to work with!"
                             </p>
                             <div>
-                                <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">- Michael Green</h4>
-                                <p class="text-gray-500 dark:text-gray-400">Urban Planner</p>
+                                <h4 class="text-xl font-semibold text-indigo-600">- Michael Green</h4>
+                                <p class="text-gray-500">Urban Planner</p>
                             </div>
                         </div>
                     </div>
@@ -290,35 +357,48 @@
     </section>
 
     <!-- Interactive Graph/Chart Section -->
-    <section id="graph" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="graph" class="py-16 bg-white transition-colors duration-300">
+        <!-- Removed dark:bg-gray-900 -->
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Embodied Carbon Emissions</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-on-scroll fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Embodied Carbon Emissions</h2>
+            <!-- Removed dark:text-gray-100 -->
+            <p class="text-lg text-gray-600 mb-8 max-w-3xl mx-auto animate-on-scroll fade-in">
                 Understanding the environmental impact of our projects through detailed carbon emission analysis.
             </p>
-            <div class="w-full max-w-4xl mx-auto bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in">
+            <!-- Removed dark:text-gray-300 -->
+            <div class="w-full max-w-4xl mx-auto bg-gray-100 p-6 rounded-lg shadow-xl animate-on-scroll zoom-in">
+                <!-- Removed dark:bg-gray-800 -->
                 <canvas id="carbonEmissionsChart" class="h-64 md:h-96"></canvas>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-200 dark:bg-gray-700 transition-colors duration-300">
+    <section id="contact" class="py-16 bg-gray-200 transition-colors duration-300">
+        <!-- Removed dark:bg-gray-700 -->
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Get in Touch</h2>
-            <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 animate-on-scroll fade-in">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 animate-on-scroll fade-in-up">Get in Touch</h2>
+            <!-- Removed dark:text-gray-100 -->
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8 animate-on-scroll fade-in">
+                <!-- Removed dark:bg-gray-800 -->
                 <form class="space-y-6">
                     <div>
-                        <label for="name" class="block text-lg font-medium text-gray-700 dark:text-gray-200 mb-2">Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="Your Name" required>
+                        <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
+                        <!-- Removed dark:text-gray-200 -->
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="Your Name" required>
+                        <!-- Removed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 -->
                     </div>
                     <div>
-                        <label for="email" class="block text-lg font-medium text-gray-700 dark:text-gray-200 mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="your.email@example.com" required>
+                        <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                        <!-- Removed dark:text-gray-200 -->
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="your.email@example.com" required>
+                        <!-- Removed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 -->
                     </div>
                     <div>
-                        <label for="message" class="block text-lg font-medium text-gray-700 dark:text-gray-200 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="Your message..." required></textarea>
+                        <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Message</label>
+                        <!-- Removed dark:text-gray-200 -->
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-md bg-gray-100 border border-gray-300 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200" placeholder="Your message..." required></textarea>
+                        <!-- Removed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 -->
                     </div>
                     <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-md text-lg transition-all duration-300 transform hover:scale-105 ripple-effect shadow-lg">
                         Send Message
@@ -329,7 +409,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8 mt-12">
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <!-- Removed dark:bg-gray-950 -->
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2024 YourBrand. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
