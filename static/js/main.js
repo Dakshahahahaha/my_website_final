@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(error => {
                 console.error("Error attempting to play loader video:", error);
                 // If autoplay is blocked or video not found (404), hide loader immediately
-                console.log("Autoplay blocked or video error. Hiding loader immediately.");
-                if (pageLoader) {
+                console.log("Autoplay blocked or error. Hiding loader immediately.");
+                if (pageLoader) { // Check if pageLoader is still in DOM
                     pageLoader.classList.add('hidden');
                     setTimeout(() => { pageLoader.remove(); }, 700);
                 }
@@ -36,9 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         loaderVideo.addEventListener('ended', () => {
             console.log("Loader video ended. Hiding loader.");
-            if (pageLoader) {
+            if (pageLoader) { // Check if pageLoader is still in DOM
                 pageLoader.classList.add('hidden');
-                setTimeout(() => { pageLoader.remove(); }, 700); // Match transition duration in CSS
+                // Remove the loader from the DOM after transition for accessibility
+                setTimeout(() => {
+                    pageLoader.remove();
+                }, 700); // Match transition duration in CSS
             }
         });
 
@@ -62,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     // ----------------------------------------------------------------------
     // 2. Light and Dark Mode Toggle
     // Moved initial theme setting after chart initialization,
@@ -69,20 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement; // The <html> tag
-
-    // Function to update chart colors based on theme
-    function updateChartColors(chart, isDarkMode) {
-        if (!chart) return; // Ensure chart exists before trying to update
-
-        const { textColor, gridColor } = getChartColors(isDarkMode);
-
-        chart.options.scales.x.ticks.color = textColor;
-        chart.options.scales.y.ticks.color = textColor;
-        chart.options.scales.y.grid.color = gridColor;
-        chart.options.plugins.legend.labels.color = textColor;
-        chart.options.scales.y.title.color = textColor;
-        chart.update();
-    }
 
     // Function to set the theme
     function setTheme(theme) {
@@ -96,12 +86,29 @@ document.addEventListener('DOMContentLoaded', () => {
             if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for light mode
         }
         // Update chart colors immediately on theme change if chart exists
-        if (carbonChart) { // Check if chart object is truly initialized (not null)
+        if (typeof carbonChart !== 'undefined' && carbonChart) { // Check if chart exists and is initialized
             const isDarkMode = htmlElement.classList.contains('dark');
             updateChartColors(carbonChart, isDarkMode);
         }
     }
 
+    // Initialize theme based on localStorage or system preference
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme) {
+        setTheme(storedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+
+    // Toggle theme on button click
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = localStorage.getItem('theme');
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+    }
 
     // ----------------------------------------------------------------------
     // 3. Ripple Effect on Buttons and Cards
