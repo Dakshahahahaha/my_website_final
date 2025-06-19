@@ -1,0 +1,38 @@
+        # Virtual environment folder
+        venv/
+
+        # Python specific ignores
+        __pycache__/
+        *.pyc
+        *.pyd
+        *.pyo
+        .pytest_cache/
+        .mypy_cache/
+
+        # VS Code specific files that shouldn't be committed
+        .vscode/
+
+        # Environment variables files
+        .env
+        .flaskenv
+
+        # Operating System specific files
+        .DS_Store
+        Thumbs.db
+
+        # Logs
+        *.log
+        log/
+
+        # Database files (if any, like SQLite)
+        *.db
+        *.sqlite
+        *.sqlite3
+
+        # Uploaded files or dynamic content (if your app allowed uploads)
+        /uploads/
+
+        # Build outputs (if you were using a static site generator for deployment)
+        /build/
+        /dist/
+        

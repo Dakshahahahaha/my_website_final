@@ -1,0 +1,226 @@
+/* static/css/style.css */
+
+/* Custom properties for light/dark mode if not using Tailwind's direct dark: classes */
+/* :root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #1a202c;
+    --bg-color-dark: #1a202c;
+    --text-color-dark: #e2e8f0;
+}
+
+.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+}
+
+.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+} */
+
+/* Custom Page Loader Animation */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Ensure black background for loader */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.7s ease-out;
+    opacity: 1;
+}
+
+#page-loader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Allows clicks through once hidden */
+}
+
+#page-loader video {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensures the video fits within the container */
+}
+
+/* Ripple Effect */
+.ripple-container {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0); /* Ensures the element is rendered on its own layer */
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    background-color: rgba(255, 255, 255, 0.4); /* White ripple */
+    pointer-events: none; /* So it doesn't interfere with clicks */
+}
+
+.dark .ripple {
+    background-color: rgba(0, 0, 0, 0.4); /* Dark ripple for dark mode */
+}
+
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Scroll Animation (Animate on Scroll) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-on-scroll.fade-in {
+    transition: opacity 1s ease-out;
+}
+
+.animate-on-scroll.fade-in.in-view {
+    opacity: 1;
+}
+
+.animate-on-scroll.slide-in-left {
+    transform: translateX(-50px);
+}
+
+.animate-on-scroll.slide-in-left.in-view {
+    transform: translateX(0);
+}
+
+.animate-on-scroll.slide-in-right {
+    transform: translateX(50px);
+}
+
+.animate-on-scroll.slide-in-right.in-view {
+    transform: translateX(0);
+}
+
+/* Parallax Effect */
+/* This can be applied to a background image using JS or background-attachment: fixed */
+/* For a simple background-attachment fixed effect: */
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Smooth Scroll for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom styles for the popup modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 0.75rem; /* rounded-lg */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.dark .modal-content {
+    background-color: #2d3748; /* bg-gray-800 */
+    color: #e2e8f0; /* text-gray-200 */
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4a5568; /* text-gray-600 */
+}
+
+.dark .close-button {
+    color: #a0aec0; /* text-gray-400 */
+}
+
+
+/* Carousel Navigation Buttons */
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-nav-btn.prev {
+    left: 0.5rem;
+}
+
+.carousel-nav-btn.next {
+    right: 0.5rem;
+}
+
+.dark .carousel-nav-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+}
+
+.dark .carousel-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Ensure consistent font throughout */
+body {
+    font-family: 'Inter', sans-serif;
+}
