@@ -218,7 +218,7 @@
                 Explore a dynamically rotating 3D representation of our commitment to modern, sustainable design principles.
                 Interact with the object by dragging your mouse or finger on it.
             </p>
-            <div id="threejs-object-container" class="w-full h-80 md:h-96 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl mx-auto overflow-hidden animate-on-scroll zoom-in">
+            <div id="threejs-object-container" class="w-full max-w-xl mx-auto h-96 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-xl mx-auto overflow-hidden animate-on-scroll zoom-in">
                 <!-- Three.js canvas will be injected here by main.js -->
             </div>
         </div>
@@ -228,10 +228,10 @@
     <section id="testimonials" class="py-16 bg-gray-100 dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">What Our Clients Say</h2>
-            <div class="relative w-full overflow-hidden">
-                <div class="testimonials-carousel-inner flex transition-transform duration-500 ease-in-out">
+            <div class="relative w-full max-w-4xl mx-auto">
+                <div class="testimonials-carousel-inner flex space-x-8 overflow-hidden snap-x snap-mandatory scroll-smooth p-4 -mx-4">
                     <!-- Testimonial 1 -->
-                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
                         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-left ripple-effect transform hover:scale-105 transition-transform duration-300">
                             <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
                                 "The team delivered an outstanding sustainable design. Their expertise in eco-friendly architecture is unmatched!"
@@ -243,7 +243,7 @@
                         </div>
                     </div>
                     <!-- Testimonial 2 -->
-                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
                         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-up delay-200 ripple-effect transform hover:scale-105 transition-transform duration-300">
                             <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
                                 "Our new office building is not only beautiful but also incredibly energy-efficient, thanks to their innovative solutions."
@@ -255,7 +255,7 @@
                         </div>
                     </div>
                     <!-- Testimonial 3 -->
-                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
                         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between animate-on-scroll fade-in-right delay-400 ripple-effect transform hover:scale-105 transition-transform duration-300">
                             <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
                                 "They made the LEED certification process seamless and understandable. Highly recommend their professional services!"
@@ -267,7 +267,7 @@
                         </div>
                     </div>
                     <!-- Testimonial 4 -->
-                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                    <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 snap-center p-4">
                         <div class="bg-white dark:bg-gray-700 rounded-lg shadow-xl p-8 text-center h-full flex flex-col justify-between">
                             <p class="text-gray-600 dark:text-gray-300 mb-6 flex-grow">
                                 "Their innovative approach to urban green spaces is truly inspiring. A pleasure to work with!"
@@ -279,10 +279,10 @@
                         </div>
                     </div>
                 </div>
-                <button id="prev-testimonial" class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-700 dark:bg-gray-600 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 dark:hover:bg-gray-500 focus:outline-none transition-all duration-300 ripple-effect">
+                <button id="prev-testimonial" class="carousel-nav-btn prev hidden md:block">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button id="next-testimonial" class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-700 dark:bg-gray-600 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 dark:hover:bg-gray-500 focus:outline-none transition-all duration-300 ripple-effect">
+                <button id="next-testimonial" class="carousel-nav-btn next hidden md:block">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -292,7 +292,7 @@
     <!-- Interactive Graph/Chart Section -->
     <section id="graph" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Embodied Carbon Intensity</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100 animate-on-scroll fade-in-up">Embodied Carbon Emissions</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto animate-on-scroll fade-in">
                 Understanding the environmental impact of our projects through detailed carbon emission analysis.
             </p>
