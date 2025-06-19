@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded event fired.");
 
     // ----------------------------------------------------------------------
-    // 1. Custom Page Loader Animation (loader.mp4)
+    // 1. Custom Page Loader Animation (loader.mp4) - REVISED
     // ----------------------------------------------------------------------
     const pageLoader = document.getElementById('page-loader');
     const loaderVideo = document.getElementById('loader-video');
@@ -16,60 +16,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pageLoader && loaderVideo) {
         console.log("Loader elements found: pageLoader and loaderVideo.");
 
-        // Attempt to play the video. Browsers often block autoplay without user interaction
-        // or if not muted. We've added muted and playsinline.
-        // Adding a small delay to ensure the loader is visible for a moment
-        setTimeout(() => {
-            console.log("Attempting to play loader video.");
-            loaderVideo.play().then(() => {
-                console.log("Loader video started playing.");
-            }).catch(error => {
-                console.error("Error attempting to play loader video:", error);
-                // If autoplay is blocked or video not found (404), hide loader immediately
-                console.log("Autoplay blocked or error. Hiding loader immediately.");
-                if (pageLoader) { // Check if pageLoader is still in DOM
-                    pageLoader.classList.add('hidden');
-                    setTimeout(() => { pageLoader.remove(); }, 700);
-                }
-            });
-        }, 100); // Small delay to allow CSS transition if any
-
-        loaderVideo.addEventListener('ended', () => {
-            console.log("Loader video ended. Hiding loader.");
-            if (pageLoader) { // Check if pageLoader is still in DOM
-                pageLoader.classList.add('hidden');
-                // Remove the loader from the DOM after transition for accessibility
+        // Function to hide the loader
+        const hideLoader = () => {
+            console.log("Hiding loader.");
+            if (pageLoader) {
+                pageLoader.style.opacity = '0';
                 setTimeout(() => {
-                    pageLoader.remove();
-                }, 700); // Match transition duration in CSS
+                    if (pageLoader.parentNode) { // Check if it's still in DOM before removing
+                        pageLoader.parentNode.removeChild(pageLoader);
+                    }
+                    document.body.style.overflow = ''; // Restore scroll
+                }, 700); // Duration of opacity transition
             }
+        };
+
+        // Try to play the video. Use .then/.catch for autoplay promises.
+        loaderVideo.play().then(() => {
+            console.log("Loader video started playing.");
+        }).catch(error => {
+            console.warn("Autoplay blocked or video error, hiding loader as fallback:", error);
+            // If autoplay fails, hide loader directly after a short delay
+            setTimeout(hideLoader, 500); // Hide after 0.5 seconds if video doesn't play
         });
 
-        // Fallback for cases where video might not autoplay or load quickly or if video tag is problematic
-        window.addEventListener('load', () => {
-            console.log("Window loaded event fired.");
-            if (pageLoader && !pageLoader.classList.contains('hidden')) {
-                console.log("Loader still visible on window load. Hiding loader as fallback.");
-                pageLoader.classList.add('hidden');
-                setTimeout(() => {
-                    pageLoader.remove();
-                }, 700);
-            }
-        });
+        // Hide loader when video ends
+        loaderVideo.addEventListener('ended', hideLoader);
+
+        // Strong fallback: Hide loader after a maximum time, regardless of video
+        setTimeout(hideLoader, 2000); // Hide after 2 seconds max, even if video stuck/broken
+
+        // Prevent scrolling while loader is (theoretically) visible
+        document.body.style.overflow = 'hidden';
+
     } else {
-        console.log("Loader elements NOT found. Loader might be missing from HTML or IDs are incorrect. Hiding any existing loader.");
-        // If loader elements are not found, ensure content is visible
+        console.log("Loader elements NOT found or incomplete. Ensuring content is visible by forcing loader hidden.");
         if (pageLoader) {
-            pageLoader.classList.add('hidden');
-            setTimeout(() => { pageLoader.remove(); }, 700);
+            pageLoader.style.opacity = '0';
+            setTimeout(() => {
+                if (pageLoader.parentNode) {
+                    pageLoader.parentNode.removeChild(pageLoader);
+                }
+                document.body.style.overflow = '';
+            }, 700);
+        } else {
+             // If pageLoader itself is missing, ensure body scroll is enabled
+            document.body.style.overflow = '';
         }
     }
 
-
-    // ----------------------------------------------------------------------
+    // ---------------------- Rest of your main.js code (from the previous Canvas) goes here ----------------------
     // 2. Light and Dark Mode Toggle
-    // Moved initial theme setting after chart initialization,
-    // or ensure it handles a non-existent chart gracefully.
     // ----------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement; // The <html> tag
@@ -516,17 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Adjust the parallax speed by changing the divisor (smaller number = faster parallax)
             heroSection.style.backgroundPositionY = `${-scrollPosition * 0.2}px`;
         });
-    }
-
-    // Initialize theme based on localStorage or system preference AFTER other elements are declared
-    // and after `carbonChart` is potentially initialized.
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme) {
-        setTheme(storedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
     }
 
 }); // End DOMContentLoaded
